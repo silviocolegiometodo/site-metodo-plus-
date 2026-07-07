@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calendário Escolar 2026 do Colégio Método Plus — planejamento completo do ano letivo." />
+  <title>Calendário Escolar 2026 | Colégio Método Plus</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* ── Page layout ── */
+    .cal-page { background: #f4f6fb; min-height: 100vh; }
+
+    /* ── Hero ── */
+    .cal-hero {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, #1a55c4 100%);
+      padding: 120px 0 64px;
+      position: relative;
+      overflow: hidden;
+    }
+    .cal-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .cal-hero-inner { position: relative; z-index: 1; text-align: center; }
+    .cal-hero .section-tag { background: rgba(255,255,255,.15); color: #fff; border: 1px solid rgba(255,255,255,.25); }
+    .cal-hero h1 { font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: #fff; margin: 16px 0 12px; }
+    .cal-hero h1 span { color: var(--yellow); }
+    .cal-hero p { color: rgba(255,255,255,.82); font-size: 1.05rem; margin-bottom: 36px; }
+
+    .cal-summary {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
+      margin-top: 8px;
+    }
+    .cal-sum-item {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 14px;
+      padding: 16px 28px;
+      text-align: center;
+      backdrop-filter: blur(8px);
+      min-width: 120px;
+    }
+    .cal-sum-item strong { display: block; font-family: 'Poppins', sans-serif; font-size: 1.7rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+    .cal-sum-item span { font-size: .78rem; color: rgba(255,255,255,.75); margin-top: 4px; display: block; text-transform: uppercase; letter-spacing: .05em; }
+
+    /* ── Legend ── */
+    .cal-legend-section { background: #fff; border-bottom: 1px solid #e8ecf2; padding: 20px 0; position: sticky; top: 72px; z-index: 50; box-shadow: 0 2px 12px rgba(11,61,145,.07); }
+    .cal-legend { display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: center; align-items: center; }
+    .legend-item { display: flex; align-items: center; gap: 7px; font-size: .82rem; color: var(--text); font-weight: 500; }
+    .legend-dot { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+    .legend-dot.feriado      { background: #ef5350; }
+    .legend-dot.ferias       { background: #FFA726; }
+    .legend-dot.letivo-sat   { background: #FFD600; border: 1px solid #f0c000; }
+    .legend-dot.simulado     { background: #66BB6A; }
+    .legend-dot.provas       { background: #42A5F5; }
+    .legend-dot.recuperacao  { background: #AB47BC; }
+    .legend-dot.etapa        { background: #0B3D91; }
+    .legend-dot.especial     { background: #26C6DA; }
+
+    /* ── Months grid ── */
+    .cal-months { padding: 48px 0 64px; }
+    .months-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .months-grid.collapsed,
+    .events-timeline.collapsed { display: none; }
+
+    /* ── Toolbar / minimize button ── */
+    .cal-toolbar { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+    .btn-toggle-cal {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; border: 1px solid #dbe2ee; color: var(--blue);
+      font-family: inherit; font-weight: 600; font-size: .85rem;
+      padding: 10px 18px; border-radius: 10px; cursor: pointer;
+      box-shadow: 0 2px 8px rgba(11,61,145,.06);
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-toggle-cal:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .btn-toggle-cal i { transition: transform .3s; }
+
+    /* ── Month card ── */
+    .month-card {
+      background: #fff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(11,61,145,.09);
+      transition: box-shadow .2s;
+    }
+    .month-card:hover { box-shadow: 0 6px 32px rgba(11,61,145,.16); }
+
+    .month-header {
+      background: var(--blue);
+      padding: 14px 20px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .month-name { font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; color: #fff; text-transform: capitalize; }
+    .month-dias { font-size: .75rem; color: rgba(255,255,255,.75); background: rgba(255,255,255,.15); border-radius: 20px; padding: 3px 10px; }
+
+    .month-body { padding: 12px; }
+
+    .day-names {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      margin-bottom: 4px;
+    }
+    .day-name { text-align: center; font-size: .68rem; font-weight: 700; color: var(--text-muted); padding: 4px 0; text-transform: uppercase; }
+    .day-name.weekend { color: #ef5350; }
+
+    .days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+
+    .day-cell {
+      aspect-ratio: 1;
+      border-radius: 7px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: default;
+      position: relative;
+      transition: transform .15s;
+    }
+    .day-cell:hover { transform: scale(1.15); z-index: 10; }
+    .day-cell.empty { background: transparent; cursor: default; }
+    .day-cell.sunday { color: #ef5350; }
+    .day-cell.saturday { color: #1565C0; }
+    .day-cell.today { outline: 2px solid var(--yellow); outline-offset: 1px; }
+
+    /* Event types */
+    .day-cell.feriado      { background: #FFEBEE; color: #c62828; font-weight: 700; }
+    .day-cell.ferias       { background: #FFF3E0; color: #E65100; }
+    .day-cell.letivo-sat   { background: #FFFDE7; color: #F57F17; font-weight: 700; border: 2px solid #FFD600; }
+    .day-cell.simulado     { background: #E8F5E9; color: #2E7D32; font-weight: 700; }
+    .day-cell.provas       { background: #E3F2FD; color: #0D47A1; font-weight: 700; }
+    .day-cell.recuperacao  { background: #F3E5F5; color: #6A1B9A; font-weight: 700; }
+    .day-cell.etapa        { background: #0B3D91; color: #fff; font-weight: 800; }
+    .day-cell.especial     { background: #E0F7FA; color: #00607A; font-weight: 700; }
+    .day-cell.ultimo       { background: #B71C1C; color: #fff; font-weight: 800; }
+    .day-cell.sem-aula     { background: #f5f5f5; color: #9e9e9e; }
+
+    /* Tooltip */
+    .day-cell[data-tip]:hover::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 6px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1a2340;
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 500;
+      padding: 5px 9px;
+      border-radius: 7px;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,.25);
+      line-height: 1.4;
+    }
+    .day-cell[data-tip]:hover::before {
+      content: '';
+      position: absolute;
+      bottom: calc(100% + 2px);
+      left: 50%;
+      transform: translateX(-50%);
+      border: 4px solid transparent;
+      border-top-color: #1a2340;
+      z-index: 101;
+    }
+
+    /* ── Events List ── */
+    .cal-events-section { background: #fff; padding: 56px 0; }
+    .cal-events-section .section-title { margin-bottom: 40px; }
+
+    .events-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 12px;
+    }
+    .event-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 18px;
+      border-radius: 12px;
+      background: #f9fafc;
+      border-left: 4px solid #e0e0e0;
+      transition: background .15s;
+    }
+    .event-row:hover { background: #f0f3ff; }
+    .event-row.feriado      { border-color: #ef5350; }
+    .event-row.ferias       { border-color: #FFA726; }
+    .event-row.letivo-sat   { border-color: #FFD600; }
+    .event-row.simulado     { border-color: #66BB6A; }
+    .event-row.provas       { border-color: #42A5F5; }
+    .event-row.recuperacao  { border-color: #AB47BC; }
+    .event-row.etapa        { border-color: #0B3D91; }
+    .event-row.especial     { border-color: #26C6DA; }
+    .event-row.ultimo       { border-color: #B71C1C; }
+
+    .event-date { font-family: 'Poppins', sans-serif; font-size: .8rem; font-weight: 700; color: var(--text-muted); min-width: 90px; padding-top: 1px; }
+    .event-label { font-size: .88rem; font-weight: 600; color: var(--text); }
+    .event-type-badge { font-size: .7rem; color: var(--text-muted); font-weight: 500; display: block; margin-top: 2px; }
+
+    /* ── Back button ── */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.85); font-size: .9rem; font-weight: 600;
+      text-decoration: none; margin-bottom: 24px;
+      transition: color .2s;
+    }
+    .back-btn:hover { color: var(--yellow); }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .months-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .months-grid { grid-template-columns: 1fr; }
+      .cal-legend { gap: 8px 14px; }
+      .cal-legend-section { position: static; }
+      .day-cell { font-size: .7rem; }
+    }
+  </style>
+</head>
+<body class="cal-page">
+
+<!-- ── Header ── -->
+<header id="header">
+  <div class="container">
+    <nav class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="logo-metodo.svg" alt="Colégio Método Plus" style="width:135px;height:auto;" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#apresentacao">Sobre Nós</a></li>
+        <li><a href="index.html#metodo">Metodologia</a></li>
+        <li><a href="index.html#segmentos">Segmentos</a></li>
+        <li><a href="index.html#parceiros">Parceiros</a></li>
+        <li><a href="calendario.html"><i class="fas fa-calendar-alt" style="margin-right:4px"></i>Calendário</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+      </ul>
+      <a href="https://wa.me/553132218003?text=Olá!%20Gostaria%20de%20fazer%20minha%20matrícula%20no%20Colégio%20Método%20Plus." class="btn btn-accent nav-cta" target="_blank" rel="noopener">
+        <i class="fab fa-whatsapp"></i> Matricule-se
+      </a>
+    </nav>
+  </div>
+</header>
+
+<!-- ── Hero ── -->
+<section class="cal-hero">
+  <div class="container">
+    <div class="cal-hero-inner">
+      <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Voltar ao site</a>
+      <div><span class="section-tag">Planejamento Letivo</span></div>
+      <h1>Calendário Escolar <span>2026</span></h1>
+      <p>Colégio Método Plus — Ano Letivo 2026 completo com feriados, etapas e eventos</p>
+      <div class="cal-summary">
+        <div class="cal-sum-item"><strong>200</strong><span>Dias Letivos</span></div>
+        <div class="cal-sum-item"><strong>4</strong><span>Etapas</span></div>
+        <div class="cal-sum-item"><strong>02/fev</strong><span>Início</span></div>
+        <div class="cal-sum-item"><strong>11/dez</strong><span>Encerramento</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Legend ── -->
+<div class="cal-legend-section">
+  <div class="container">
+    <div class="cal-legend">
+      <div class="legend-item"><span class="legend-dot feriado"></span>Feriado</div>
+      <div class="legend-item"><span class="legend-dot ferias"></span>Férias / Recesso</div>
+      <div class="legend-item"><span class="legend-dot letivo-sat"></span>Sábado Letivo</div>
+      <div class="legend-item"><span class="legend-dot simulado"></span>Simulado</div>
+      <div class="legend-item"><span class="legend-dot provas"></span>Provas Discursivas</div>
+      <div class="legend-item"><span class="legend-dot recuperacao"></span>Recuperação</div>
+      <div class="legend-item"><span class="legend-dot etapa"></span>Início / Fim de Etapa</div>
+      <div class="legend-item"><span class="legend-dot especial"></span>Data Especial</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Calendars ── -->
+<section class="cal-months">
+  <div class="container">
+    <div class="months-grid" id="monthsGrid"></div>
+  </div>
+</section>
+
+<!-- ── Events list ── -->
+<section class="cal-events-section">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Agenda Completa</span>
+      <h2 class="section-title">Eventos e Datas <span>Importantes</span></h2>
+    </div>
+    <div class="cal-toolbar">
+      <button type="button" class="btn-toggle-cal" id="toggleEventsBtn">
+        <i class="fas fa-chevron-up"></i> Minimizar Eventos
+      </button>
+    </div>
+    <div class="events-timeline" id="eventsList"></div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="margin-bottom:16px"><img src="logo-metodo.svg" alt="Colégio Método Plus" style="width:100px;height:auto;" /></div>
+        <p>Fundado em 1989, há mais de 37 anos formando cidadãos com turmas reduzidas e atenção individualizada.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Links Rápidos</h4>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#apresentacao">Sobre Nós</a></li>
+          <li><a href="index.html#metodo">Metodologia</a></li>
+          <li><a href="index.html#segmentos">Segmentos</a></li>
+          <li><a href="index.html#parceiros">Parceiros</a></li>
+          <li><a href="calendario.html">Calendário 2026</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-contact">
+        <h4>Contato</h4>
+        <p><i class="fas fa-map-marker-alt"></i> R. Manoel Gomes Pereira, 91 – Serra, BH</p>
+        <p><i class="fas fa-phone"></i> (31) 3221-8003</p>
+        <p><i class="fas fa-envelope"></i> colegiometodobh@gmail.com</p>
+        <p><i class="fas fa-clock"></i> Seg–Sex: 7h–15h</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Colégio Método Plus. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ── Event data ────────────────────────────────────────────
+const EVENTS = {};
+
+function addDay(m, d, type, label) {
+  EVENTS[`2026-${m}-${d}`] = { type, label };
+}
+function addRange(m, d1, d2, type, label) {
+  for (let d = d1; d <= d2; d++) addDay(m, d, type, label);
+}
+
+// Janeiro
+addDay(1, 1, 'feriado', 'Confraternização Universal');
+addRange(1, 2, 31, 'ferias', 'Férias Coletivas CCT');
+
+// Fevereiro
+addDay(2, 2, 'etapa', 'Início do Ano Letivo');
+addRange(2, 16, 18, 'feriado', 'Carnaval');
+
+// Março
+addDay(3, 14, 'letivo-sat', 'Sábado Letivo');
+addRange(3, 16, 20, 'provas', 'Provas Discursivas — 1ª Etapa');
+
+// Abril
+addRange(4, 2, 3, 'feriado', 'Paixão de Cristo');
+addDay(4, 21, 'feriado', 'Tiradentes');
+addDay(4, 25, 'letivo-sat', 'Sábado Letivo');
+addDay(4, 27, 'simulado', 'Dias de Simulado');
+addDay(4, 28, 'simulado', 'Dias de Simulado');
+
+// Maio
+addDay(5, 1, 'feriado', 'Dia do Trabalhador');
+addDay(5, 4, 'etapa', 'Início da 2ª Etapa');
+addDay(5, 23, 'letivo-sat', 'Sábado Letivo');
+addRange(5, 25, 29, 'provas', 'Provas Discursivas');
+
+// Junho
+addRange(6, 4, 5, 'feriado', 'Corpus Christi');
+
+// Julho
+addDay(7, 4, 'letivo-sat', 'Sábado Letivo');
+addDay(7, 8, 'simulado', 'Dias de Simulado');
+addDay(7, 9, 'simulado', 'Dias de Simulado');
+addDay(7, 10, 'etapa', 'Fim da 2ª Etapa');
+addRange(7, 11, 26, 'ferias', 'Recesso Escolar CCT');
+addDay(7, 27, 'sem-aula', 'Não Letivo — Administrativo');
+addDay(7, 28, 'etapa', 'Início da 3ª Etapa');
+
+// Agosto
+addDay(8, 4, 'letivo-sat', 'Sábado Letivo');
+addRange(8, 5, 7, 'recuperacao', 'Recuperação 1º Semestre');
+addRange(8, 10, 11, 'recuperacao', 'Recuperação 1º Semestre');
+addDay(8, 15, 'feriado', 'Assunção de N. Sra.');
+addRange(8, 24, 28, 'provas', 'Provas Discursivas — 3ª Etapa');
+
+// Setembro
+addDay(9, 7, 'feriado', 'Independência do Brasil');
+addDay(9, 24, 'simulado', 'Dias de Simulado');
+addDay(9, 25, 'simulado', 'Dias de Simulado');
+addDay(9, 30, 'etapa', 'Início da 4ª Etapa');
+
+// Outubro
+addRange(10, 12, 16, 'ferias', 'Recesso Escolar');
+addDay(10, 12, 'feriado', 'Nossa Sra. Aparecida');
+addDay(10, 15, 'especial', 'Dia do Professor');
+
+// Novembro
+addDay(11, 2, 'feriado', 'Finados');
+addRange(11, 3, 6, 'provas', 'Provas Discursivas — 4ª Etapa');
+addDay(11, 9, 'provas', 'Provas Discursivas — 4ª Etapa');
+addDay(11, 15, 'feriado', 'Proclamação da República');
+addDay(11, 20, 'feriado', 'Consciência Negra');
+
+// Dezembro
+addDay(12, 1, 'simulado', 'Dias de Simulado');
+addDay(12, 2, 'simulado', 'Dias de Simulado');
+addDay(12, 8, 'feriado', 'Imaculada Conceição');
+addDay(12, 11, 'ultimo', 'Último Dia Letivo');
+addRange(12, 14, 18, 'recuperacao', 'Recuperação Final');
+
+// ── Month metadata ────────────────────────────────────────
+const MONTHS = [
+  { n: 1,  name: 'Janeiro',   days: 31, start: 4, letivos: 0  },
+  { n: 2,  name: 'Fevereiro', days: 28, start: 0, letivos: 17 },
+  { n: 3,  name: 'Março',     days: 31, start: 0, letivos: 23 },
+  { n: 4,  name: 'Abril',     days: 30, start: 3, letivos: 20 },
+  { n: 5,  name: 'Maio',      days: 31, start: 5, letivos: 20 },
+  { n: 6,  name: 'Junho',     days: 30, start: 1, letivos: 21 },
+  { n: 7,  name: 'Julho',     days: 31, start: 3, letivos: 14 },
+  { n: 8,  name: 'Agosto',    days: 31, start: 6, letivos: 21 },
+  { n: 9,  name: 'Setembro',  days: 30, start: 2, letivos: 21 },
+  { n: 10, name: 'Outubro',   days: 31, start: 4, letivos: 17 },
+  { n: 11, name: 'Novembro',  days: 30, start: 0, letivos: 19 },
+  { n: 12, name: 'Dezembro',  days: 31, start: 2, letivos: 8  },
+];
+
+const DAY_NAMES = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];
+
+// ── Render calendars ──────────────────────────────────────
+function renderCalendars() {
+  const grid = document.getElementById('monthsGrid');
+  const today = new Date();
+
+  MONTHS.forEach(({ n, name, days, start, letivos }) => {
+    const card = document.createElement('div');
+    card.className = 'month-card';
+
+    // Header
+    card.innerHTML = `
+      <div class="month-header">
+        <span class="month-name">${name} 2026</span>
+        ${letivos > 0 ? `<span class="month-dias">${letivos} dias letivos</span>` : '<span class="month-dias">Férias</span>'}
+      </div>
+      <div class="month-body">
+        <div class="day-names">
+          ${DAY_NAMES.map((d, i) => `<div class="day-name${i===0||i===6?' weekend':''}">${d}</div>`).join('')}
+        </div>
+        <div class="days-grid" id="grid-${n}"></div>
+      </div>
+    `;
+    grid.appendChild(card);
+
+    const daysGrid = card.querySelector(`#grid-${n}`);
+
+    // Empty cells before month start
+    for (let i = 0; i < start; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'day-cell empty';
+      daysGrid.appendChild(empty);
+    }
+
+    // Day cells
+    for (let d = 1; d <= days; d++) {
+      const key = `2026-${n}-${d}`;
+      const ev = EVENTS[key];
+      const cell = document.createElement('div');
+      const dow = (start + d - 1) % 7; // 0=Sun, 6=Sat
+
+      let cls = 'day-cell';
+      if (ev) cls += ' ' + ev.type;
+      else if (dow === 0) cls += ' sunday';
+      else if (dow === 6) cls += ' saturday';
+
+      // Highlight today
+      if (today.getFullYear() === 2026 && today.getMonth() + 1 === n && today.getDate() === d) cls += ' today';
+
+      cell.className = cls;
+      cell.textContent = d;
+      if (ev) cell.setAttribute('data-tip', ev.label);
+
+      daysGrid.appendChild(cell);
+    }
+  });
+}
+
+// ── Render events list ────────────────────────────────────
+const TYPE_LABELS = {
+  feriado: 'Feriado Nacional / Municipal',
+  ferias: 'Férias / Recesso Escolar',
+  'letivo-sat': 'Sábado Letivo',
+  simulado: 'Simulado',
+  provas: 'Provas Discursivas',
+  recuperacao: 'Recuperação',
+  etapa: 'Marco de Etapa',
+  especial: 'Data Especial',
+  ultimo: 'Encerramento Letivo',
+  'sem-aula': 'Dia não letivo',
+};
+
+const MONTH_NAMES_SHORT = ['','Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+const MONTH_NAMES_FULL  = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+function renderEventsList() {
+  const list = document.getElementById('eventsList');
+  const seen = new Set();
+
+  // Collect unique events (collapse consecutive same-label days into ranges)
+  const eventRanges = [];
+  let current = null;
+
+  const allKeys = Object.keys(EVENTS).sort((a, b) => {
+    const [,am,ad] = a.split('-').map(Number);
+    const [,bm,bd] = b.split('-').map(Number);
+    return am !== bm ? am - bm : ad - bd;
+  });
+
+  allKeys.forEach(key => {
+    const [, m, d] = key.split('-').map(Number);
+    const ev = EVENTS[key];
+    const id = `${m}-${ev.label}`;
+
+    if (current && current.id === id && current.endM === m && current.endD === d - 1) {
+      current.endD = d;
+    } else {
+      if (current) eventRanges.push(current);
+      current = { id, type: ev.type, label: ev.label, startM: m, startD: d, endM: m, endD: d };
+    }
+  });
+  if (current) eventRanges.push(current);
+
+  eventRanges.forEach(r => {
+    const div = document.createElement('div');
+    div.className = `event-row ${r.type}`;
+    const dateStr = r.startD === r.endD
+      ? `${String(r.startD).padStart(2,'0')}/${String(r.startM).padStart(2,'0')}`
+      : `${String(r.startD).padStart(2,'0')} a ${String(r.endD).padStart(2,'0')}/${String(r.endM).padStart(2,'0')}`;
+    div.innerHTML = `
+      <span class="event-date">${dateStr}</span>
+      <div>
+        <div class="event-label">${r.label}</div>
+        <span class="event-type-badge">${TYPE_LABELS[r.type] || r.type}</span>
+      </div>`;
+    list.appendChild(div);
+  });
+}
+
+renderCalendars();
+renderEventsList();
+
+// ── Toggle (minimizar/expandir) eventos e datas importantes ──
+const toggleEventsBtn = document.getElementById('toggleEventsBtn');
+const eventsList = document.getElementById('eventsList');
+
+toggleEventsBtn.addEventListener('click', () => {
+  const collapsed = eventsList.classList.toggle('collapsed');
+  toggleEventsBtn.innerHTML = collapsed
+    ? '<i class="fas fa-chevron-down"></i> Expandir Eventos'
+    : '<i class="fas fa-chevron-up"></i> Minimizar Eventos';
+});
+</script>
+
+</body>
+</html>
