@@ -301,8 +301,8 @@ section { padding: 96px 0; }
 .mobile-nav-header {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 195px;
+  justify-content: space-between;
+  gap: 16px;
   padding-bottom: 16px;
   margin-bottom: 8px;
   border-bottom: 1px solid var(--gray-2);
@@ -342,7 +342,7 @@ section { padding: 96px 0; }
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 120px 0 80px;
+  padding: 160px 0 80px;
 }
 
 .hero-bg {
@@ -927,10 +927,14 @@ section { padding: 96px 0; }
   display: flex;
   align-items: center;
   gap: 14px;
+  min-width: 0;
   box-shadow: 0 2px 16px rgba(11,61,145,.08);
   border: 1px solid rgba(11,61,145,.06);
   transition: var(--transition);
 }
+.estrutura-card > div { min-width: 0; }
+.estrutura-card strong,
+.estrutura-card span { overflow-wrap: break-word; }
 .estrutura-card:hover {
   box-shadow: var(--shadow);
   transform: translateY(-4px);
@@ -1569,7 +1573,7 @@ footer {
 /* ===================== SCROLL TO TOP ===================== */
 .scroll-top {
   position: fixed;
-  bottom: 32px; right: 90px;
+  bottom: 32px; right: 32px;
   width: 48px; height: 48px;
   background: var(--blue);
   color: var(--white);
@@ -1592,7 +1596,7 @@ footer {
 /* ===================== WHATSAPP FLOAT ===================== */
 .whatsapp-float {
   position: fixed;
-  bottom: 32px; right: 32px;
+  bottom: 32px; left: 32px;
   background: #25D366;
   color: var(--white);
   width: 52px; height: 52px;
@@ -1613,16 +1617,17 @@ footer {
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
 }
+.parceiros-grid .parceiro-card[data-parceiro="classapp"] { grid-column: 2; }
 
 /* ===================== RESPONSIVE ===================== */
 @media (max-width: 1024px) {
   .parceiros-grid { grid-template-columns: repeat(2, 1fr); }
-  .parceiros-grid .parceiro-card[data-parceiro="classapp"] { grid-column: 1 / -1; max-width: 460px; margin: 0 auto; width: 100%; }
+  .parceiros-grid .parceiro-card[data-parceiro="classapp"] { grid-column: auto; }
   .nav-links { display: none; }
   .nav-cta { display: none; }
   .nav-logo img { width: 100px !important; }
   .nav-inner { justify-content: flex-start; }
-  .hamburger { display: flex; margin-left: 195px; margin-right: auto; }
+  .hamburger { display: flex; margin-left: auto; }
   .hero-grid { grid-template-columns: 1fr; gap: 48px; }
   .hero-visual { display: none; }
   .apresentacao-grid { grid-template-columns: 1fr; }
@@ -1640,9 +1645,12 @@ footer {
 
 @media (max-width: 768px) {
   .avaliacao-box { flex-direction: column; padding: 24px; }
-  .estrutura-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .avaliacao-box-content .btn { width: 100%; white-space: normal; justify-content: center; text-align: center; }
+  .estrutura-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
   .estrutura-grid > div:nth-child(3) { order: 5; }
   .estrutura-grid > div:nth-child(6) { order: 6; }
+  .estrutura-card { flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 24px 14px; }
+  .estrutura-card-icon { margin: 0 auto; }
   .parceiros-grid { grid-template-columns: 1fr; }
   .parceiros-grid .parceiro-card[data-parceiro="classapp"] { grid-column: auto; max-width: 100%; }
   section { padding: 72px 0; }
@@ -1660,8 +1668,26 @@ footer {
   .hero-stats { gap: 20px; }
   .stats-bar { padding: 32px; }
   .matricula-features { gap: 16px; }
-  .whatsapp-float { right: 16px; bottom: 16px; width: 46px; height: 46px; font-size: 1.3rem; }
-  .scroll-top { right: 70px; bottom: 16px; width: 42px; height: 42px; }
+  .whatsapp-float { left: 16px; bottom: 16px; width: 46px; height: 46px; font-size: 1.3rem; }
+  .scroll-top { right: 16px; bottom: 16px; width: 42px; height: 42px; }
+
+  /* Texto de leitura no mobile não pode ficar abaixo de ~16px */
+  .mobile-nav a { font-size: 1rem; }
+  .mvv-card p { font-size: 1rem; }
+  .valor-card p { font-size: .95rem; }
+  .metodo-card p { font-size: 1rem; }
+  .segmento-card p { font-size: .95rem; }
+  .diferencial-card p { font-size: .95rem; }
+  .estrutura-card strong { font-size: 1.05rem; }
+  .estrutura-card span { font-size: .95rem; }
+  .avaliacao-box-content > p { font-size: 1rem; }
+  .depoimento-text { font-size: 1rem; }
+  .noticia-excerpt { font-size: .95rem; }
+  .contato-info > p { font-size: 1rem; }
+  .contato-item-text span { font-size: .95rem; }
+  .footer-brand p { font-size: .95rem; }
+  .footer-col ul a { font-size: .95rem; }
+  .footer-contact p { font-size: .95rem; }
 }
 
 @media (max-width: 480px) {

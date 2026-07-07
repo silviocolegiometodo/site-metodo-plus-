@@ -44,7 +44,6 @@ const CARDS = [
     title: 'ClassApp',
     linkColor: '#7c3aed',
     delay: 300,
-    gridColumn: 2,
     text: 'Plataforma de comunicação escolar que conecta escola, alunos e famílias em um ambiente digital seguro, facilitando o acompanhamento da rotina acadêmica e fortalecendo a participação dos responsáveis na educação.',
   },
 ]
@@ -72,7 +71,6 @@ function ParceiroCard({ card, onOpen }) {
         cursor: 'pointer',
         transition: 'transform .25s ease, box-shadow .25s ease',
         transform: hover ? 'translateY(-6px)' : '',
-        gridColumn: card.gridColumn,
       }}
     >
       <div style={{

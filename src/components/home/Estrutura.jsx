@@ -21,7 +21,7 @@ export default function Estrutura({ onPhotoClick }) {
 
         <div
           className="estrutura-grid"
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 16, marginBottom: 48 }}
+          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 16, marginBottom: 48 }}
           data-aos="fade-up"
           data-aos-delay="100"
         >
