@@ -3,7 +3,6 @@ import GaleriaCarouselItem from './GaleriaCarouselItem.jsx'
 const ESTRUTURA_CARDS = [
   { icon: 'fa-chalkboard', title: '7 Salas de Aula', text: 'Acomodações arejadas e aconchegantes' },
   { icon: 'fa-flask', title: 'Laboratório', text: 'Para atividades práticas e experimentais' },
-  { icon: 'fa-book-reader', title: 'Biblioteca + Multimídia', text: 'Biblioteca com sala de multimídia integrada' },
   { icon: 'fa-users', title: 'Espaço de Convivência', text: 'Ambiente acolhedor para socialização' },
   { icon: 'fa-running', title: 'Clube Olympico', text: 'Quadras para Educação Física (parceria)' },
   { icon: 'fa-sun', title: 'Turno Matutino', text: 'Funcionamento exclusivo pela manhã' },
@@ -51,17 +50,8 @@ export default function Estrutura({ onPhotoClick }) {
               { src: '/images/laboratorio-2.jpeg', alt: 'Bancada de laboratório com microscópio e balões volumétricos', width: 1024, height: 768 },
             ]}
           />
-          <div className="galeria-item" data-aos="fade-up" data-aos-delay="200">
-            <div className="galeria-placeholder">
-              <i className="fas fa-book-reader"></i>
-            </div>
-            <div className="galeria-overlay">
-              <i className="fas fa-expand"></i>
-            </div>
-            <div className="galeria-caption">Biblioteca + Multimídia</div>
-          </div>
           <GaleriaCarouselItem
-            aosDelay={300}
+            aosDelay={200}
             caption="Clube Olympico"
             onPhotoClick={onPhotoClick}
             photos={[
@@ -70,7 +60,7 @@ export default function Estrutura({ onPhotoClick }) {
             ]}
           />
           <GaleriaCarouselItem
-            aosDelay={400}
+            aosDelay={300}
             caption="Espaço de Convivência"
             onPhotoClick={onPhotoClick}
             photos={[

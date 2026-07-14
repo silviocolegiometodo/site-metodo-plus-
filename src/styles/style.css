@@ -1200,7 +1200,8 @@ section { padding: 96px 0; }
 
 .noticias-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(0, 380px));
+  justify-content: center;
   gap: 28px;
 }
 
@@ -1635,7 +1636,6 @@ footer {
   .segmentos-grid { grid-template-columns: repeat(2, 1fr); }
   .diferenciais-grid { grid-template-columns: repeat(2, 1fr); }
   .diferenciais-grid .diferencial-card { grid-column: auto !important; }
-  .noticias-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .valores-cards { grid-template-columns: repeat(2, 1fr); }
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
@@ -1661,7 +1661,6 @@ footer {
   .contato-grid { grid-template-columns: 1fr; }
   .galeria-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; }
   .galeria-item:nth-child(1), .galeria-item:nth-child(4) { grid-column: auto; }
-  .noticias-grid { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .depoimento-card { min-width: calc(85vw); }

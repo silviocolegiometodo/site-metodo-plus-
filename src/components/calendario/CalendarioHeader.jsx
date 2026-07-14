@@ -14,6 +14,7 @@ export default function CalendarioHeader() {
             <li><a href="/#segmentos">Segmentos</a></li>
             <li><a href="/#parceiros">Parceiros</a></li>
             <li><Link to="/calendario"><i className="fas fa-calendar-alt" style={{ marginRight: 4 }}></i>Calendário</Link></li>
+            <li><Link to="/portal"><i className="fas fa-user-graduate" style={{ marginRight: 4 }}></i>Portal do Aluno</Link></li>
             <li><a href="/#contato">Contato</a></li>
           </ul>
           <a

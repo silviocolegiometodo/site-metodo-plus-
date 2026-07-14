@@ -20,6 +20,7 @@ export default function CalendarioFooter() {
               <li><a href="/#segmentos">Segmentos</a></li>
               <li><a href="/#parceiros">Parceiros</a></li>
               <li><Link to="/calendario">Calendário 2026</Link></li>
+              <li><Link to="/portal">Portal do Aluno</Link></li>
             </ul>
           </div>
           <div className="footer-col footer-contact">

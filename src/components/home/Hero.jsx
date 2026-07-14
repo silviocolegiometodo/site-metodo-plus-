@@ -55,7 +55,7 @@ export default function Hero() {
               <div className="card-icon"><i className="fas fa-trophy"></i></div>
               <div className="card-text">
                 <strong>Top Aprovações</strong>
-                <span>Vestibulares 2024</span>
+                <span>Vestibulares 2025</span>
               </div>
             </div>
             <div className="hero-floating-card card-2">

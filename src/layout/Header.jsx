@@ -54,6 +54,11 @@ export default function Header() {
                 </Link>
               </li>
               <li>
+                <Link to="/portal">
+                  <i className="fas fa-user-graduate" style={{ marginRight: 4 }}></i>Portal do Aluno
+                </Link>
+              </li>
+              <li>
                 <a href={hrefFor('#contato')}>Contato</a>
               </li>
             </ul>
@@ -100,6 +105,9 @@ export default function Header() {
         ))}
         <Link to="/calendario" style={{ color: 'var(--blue)', fontWeight: 700 }} onClick={close}>
           <i className="fas fa-calendar-alt" style={{ width: 20, marginRight: 10 }}></i>Calendário 2026
+        </Link>
+        <Link to="/portal" style={{ color: 'var(--blue)', fontWeight: 700 }} onClick={close}>
+          <i className="fas fa-user-graduate" style={{ width: 20, marginRight: 10 }}></i>Portal do Aluno
         </Link>
         <a href={hrefFor('#noticias')} onClick={close}>
           <i className="fas fa-newspaper" style={{ width: 20, marginRight: 10 }}></i>Notícias

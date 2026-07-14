@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default function Footer() {
   return (
     <footer>
@@ -28,6 +30,7 @@ export default function Footer() {
               <li><a href="#parceiros">Parceiros</a></li>
               <li><a href="#noticias">Notícias</a></li>
               <li><a href="#matricula">Matrículas</a></li>
+              <li><Link to="/portal">Portal do Aluno</Link></li>
             </ul>
           </div>
 
