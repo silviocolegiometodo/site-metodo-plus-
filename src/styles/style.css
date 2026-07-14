@@ -649,15 +649,15 @@ section { padding: 96px 0; }
 .mvv-card:nth-child(2) { border-color: var(--red); }
 .mvv-card:nth-child(3) { border-color: var(--yellow); }
 .mvv-card:nth-child(4) { border-color: #22c55e; }
-.mvv-card h4 {
+.mvv-card h3 {
   font-size: .9rem;
   font-weight: 700;
   color: var(--blue);
   margin-bottom: 8px;
 }
-.mvv-card:nth-child(2) h4 { color: var(--red); }
-.mvv-card:nth-child(3) h4 { color: #9a7900; }
-.mvv-card:nth-child(4) h4 { color: #16a34a; }
+.mvv-card:nth-child(2) h3 { color: var(--red); }
+.mvv-card:nth-child(3) h3 { color: #9a7900; }
+.mvv-card:nth-child(4) h3 { color: #16a34a; }
 .mvv-card p { font-size: .85rem; color: var(--text-muted); }
 
 .valores-cards {
@@ -914,7 +914,7 @@ section { padding: 96px 0; }
   background: var(--blue);
   color: var(--white);
 }
-.diferencial-card h4 { font-size: .95rem; margin-bottom: 6px; }
+.diferencial-card h3 { font-size: .95rem; margin-bottom: 6px; }
 .diferencial-card p { font-size: .84rem; color: var(--text-muted); }
 
 /* ===================== ESTRUTURA / GALERIA ===================== */
@@ -1563,7 +1563,7 @@ footer {
 }
 .footer-bottom p {
   font-size: .82rem;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.6);
 }
 .footer-bottom a {
   color: rgba(255,255,255,.55);

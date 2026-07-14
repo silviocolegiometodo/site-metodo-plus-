@@ -19,7 +19,18 @@ export default function Apresentacao() {
       <div className="container">
         <div className="apresentacao-grid">
           <div className="apresentacao-img" data-aos="fade-right">
-            <img src="/images/fachada-escola.jpeg" alt="Fachada do Colégio Método Plus" className="apresentacao-photo" width="1024" height="768" />
+            <picture>
+              <source srcSet="/images/fachada-escola.webp" type="image/webp" />
+              <img
+                src="/images/fachada-escola.jpeg"
+                alt="Fachada do Colégio Método Plus"
+                className="apresentacao-photo"
+                width="1024"
+                height="768"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
             <div className="badge-anos">
               <strong>+37</strong>
               <span>Anos de história</span>
@@ -38,12 +49,12 @@ export default function Apresentacao() {
             <div className="mvv-grid" data-aos="fade-up" data-aos-delay="200">
               {MVV_CARDS.map((card) => (
                 <div className="mvv-card" key={card.title}>
-                  <h4><i className={`fas ${card.icon}`} style={{ marginRight: 6 }}></i>{card.title}</h4>
+                  <h3><i className={`fas ${card.icon}`} style={{ marginRight: 6 }}></i>{card.title}</h3>
                   <p>{card.text}</p>
                 </div>
               ))}
               <div className="mvv-card">
-                <h4><i className="fas fa-heart" style={{ marginRight: 6 }}></i>Nossa Filosofia</h4>
+                <h3><i className="fas fa-heart" style={{ marginRight: 6 }}></i>Nossa Filosofia</h3>
                 <p>Somos voltados para a <strong>Filosofia da Liberdade</strong> — para pensar, comunicar e agir — com responsabilidade e autonomia, porque assim é a vida e assim são os bons cursos superiores.</p>
               </div>
             </div>

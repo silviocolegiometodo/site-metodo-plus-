@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import useAos from '../hooks/useAos.js'
 import useLightbox from '../hooks/useLightbox.js'
+import Seo from '../components/Seo.jsx'
+import { PAGE_SEO, ORGANIZATION_JSON_LD, WEBSITE_JSON_LD } from '../data/seoConfig.js'
 import Header from '../layout/Header.jsx'
 import Footer from '../layout/Footer.jsx'
 import ScrollTopButton from '../layout/ScrollTopButton.jsx'
@@ -33,18 +35,21 @@ export default function HomePage() {
 
   return (
     <>
+      <Seo {...PAGE_SEO.home} jsonLd={[ORGANIZATION_JSON_LD, WEBSITE_JSON_LD]} />
       <Header />
-      <Hero />
-      <Apresentacao />
-      <Metodo />
-      <Segmentos />
-      <Diferenciais />
-      <Estrutura onPhotoClick={lightbox.open} />
-      <Parceiros />
-      <Depoimentos />
-      <Noticias onPhotoClick={lightbox.open} />
-      <Matricula />
-      <Contato />
+      <main>
+        <Hero />
+        <Apresentacao />
+        <Metodo />
+        <Segmentos />
+        <Diferenciais />
+        <Estrutura onPhotoClick={lightbox.open} />
+        <Parceiros />
+        <Depoimentos />
+        <Noticias onPhotoClick={lightbox.open} />
+        <Matricula />
+        <Contato />
+      </main>
       <Footer />
       <ScrollTopButton />
       <WhatsappFloat />

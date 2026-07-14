@@ -3,16 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Colégio Método Plus – Educação de excelência com metodologia inovadora, tecnologia e acompanhamento individual." />
-  <title>Colégio Método Plus | Preparando Alunos para o Futuro</title>
+  <meta name="theme-color" content="#0B3D91" />
+  <title>Colégio Método Plus | Educação do 6º Ano ao Ensino Médio em BH</title>
 
-  <!-- Fonts -->
+  <!-- meta description, canonical and robots are set per-route by src/components/Seo.jsx -->
+  <link rel="icon" type="image/svg+xml" href="/logo-metodo.svg" />
+
+  <!-- Open Graph / Twitter (static fallback for crawlers that don't run JS) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Colégio Método Plus" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:title" content="Colégio Método Plus | Educação do 6º Ano ao Ensino Médio em BH" />
+  <meta property="og:description" content="Colégio Método Plus, no bairro Serra em Belo Horizonte: mais de 37 anos de experiência, turmas de 17 a 25 alunos e acompanhamento individual do 6º ano ao 3º ano do Ensino Médio." />
+  <meta property="og:url" content="https://www.colegiometodoplus.com.br/" />
+  <meta property="og:image" content="https://www.colegiometodoplus.com.br/images/fachada-escola.jpeg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Colégio Método Plus | Educação do 6º Ano ao Ensino Médio em BH" />
+  <meta name="twitter:description" content="Colégio Método Plus, no bairro Serra em Belo Horizonte: mais de 37 anos de experiência, turmas de 17 a 25 alunos e acompanhamento individual do 6º ano ao 3º ano do Ensino Médio." />
+  <meta name="twitter:image" content="https://www.colegiometodoplus.com.br/images/fachada-escola.jpeg" />
+
+  <!-- LCP image: preload so the browser fetches it before it discovers the img tag -->
+  <link rel="preload" as="image" href="/images/sala-de-aula.webp" fetchpriority="high" />
+
+  <!-- Fonts + Font Awesome: loaded non-render-blocking (preload as style, swap to stylesheet on load) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  </noscript>
 </head>
 <body>
   <div id="root"></div>

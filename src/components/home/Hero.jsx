@@ -49,7 +49,17 @@ export default function Hero() {
 
           <div className="hero-visual" data-aos="fade-left" data-aos-delay="200">
             <div className="hero-img-wrapper">
-              <img src="/images/sala-de-aula.jpeg" alt="Alunos assistindo aula no Colégio Método Plus" className="hero-img-photo" width="1280" height="849" />
+              <picture>
+                <source srcSet="/images/sala-de-aula.webp" type="image/webp" />
+                <img
+                  src="/images/sala-de-aula.jpeg"
+                  alt="Alunos assistindo aula no Colégio Método Plus"
+                  className="hero-img-photo"
+                  width="1280"
+                  height="849"
+                  fetchPriority="high"
+                />
+              </picture>
             </div>
             <div className="hero-floating-card card-1">
               <div className="card-icon"><i className="fas fa-trophy"></i></div>

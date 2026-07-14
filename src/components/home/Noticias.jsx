@@ -75,7 +75,7 @@ export default function Noticias({ onPhotoClick }) {
           <div className="noticia-card" data-aos="fade-up" data-aos-delay="0">
             <ExcursaoCarousel onPhotoClick={onPhotoClick} />
             <div className="noticia-body">
-              <div className="noticia-date"><i className="fas fa-calendar"></i> 10 de Julho, 2026</div>
+              <div className="noticia-date"><i className="fas fa-calendar"></i> <time dateTime="2026-07-10">10 de Julho, 2026</time></div>
               <h3 className="noticia-title">Alunos visitam o Museu de Artes e Ofícios e o CCBB em excursão cultural</h3>
               <p className="noticia-excerpt">Estudantes do Método Plus conheceram de perto a história do trabalho brasileiro no Museu de Artes e Ofícios e viveram uma experiência imersiva na exposição do Centro Cultural Banco do Brasil.</p>
             </div>
@@ -84,7 +84,7 @@ export default function Noticias({ onPhotoClick }) {
           <div className="noticia-card" data-aos="fade-up" data-aos-delay="100">
             <DoacaoCarousel onPhotoClick={onPhotoClick} />
             <div className="noticia-body">
-              <div className="noticia-date"><i className="fas fa-calendar"></i> 2 de Julho, 2026</div>
+              <div className="noticia-date"><i className="fas fa-calendar"></i> <time dateTime="2026-07-02">2 de Julho, 2026</time></div>
               <h3 className="noticia-title">Alunos promovem campanha solidária e arrecadam agasalhos para quem precisa</h3>
               <p className="noticia-excerpt">Estudantes do Método Plus organizaram uma arrecadação de agasalhos e entregaram as doações pessoalmente a uma igreja parceira, levando conforto a famílias em situação de vulnerabilidade.</p>
             </div>

@@ -3,19 +3,28 @@ import '../styles/portal.css'
 import { PORTAL_LINKS } from '../data/portalLinks.js'
 import CalendarioHeader from '../components/calendario/CalendarioHeader.jsx'
 import CalendarioFooter from '../components/calendario/CalendarioFooter.jsx'
+import Seo from '../components/Seo.jsx'
+import { PAGE_SEO, breadcrumbJsonLd } from '../data/seoConfig.js'
+
+const BREADCRUMB = breadcrumbJsonLd([
+  { name: 'Início', path: '/' },
+  { name: 'Portal do Aluno', path: '/portal' },
+])
 
 export default function PortalPage() {
   return (
     <div className="portal-page">
+      <Seo {...PAGE_SEO.portal} jsonLd={BREADCRUMB} />
       <CalendarioHeader />
 
+      <main>
       <section className="portal-hero">
         <div className="container">
           <div className="portal-hero-inner">
             <Link to="/" className="back-btn"><i className="fas fa-arrow-left"></i> Voltar ao site</Link>
             <div><span className="section-tag">Acessos Rápidos</span></div>
             <h1>Portal do <span>Aluno</span></h1>
-            <p>Reunimos aqui os principais acessos para alunos e famílias do Colégio Método Plus</p>
+            <p>Reunimos aqui os principais acessos para alunos e famílias do Colégio Método Plus: material didático digital, entrega de atividades, boletim escolar e a loja de material oficial — tudo em um só lugar, sem precisar guardar vários links.</p>
           </div>
         </div>
       </section>
@@ -40,6 +49,7 @@ export default function PortalPage() {
           </div>
         </div>
       </section>
+      </main>
 
       <CalendarioFooter />
     </div>

@@ -5,12 +5,21 @@ import CalendarioHeader from '../components/calendario/CalendarioHeader.jsx'
 import CalendarioFooter from '../components/calendario/CalendarioFooter.jsx'
 import MonthCard from '../components/calendario/MonthCard.jsx'
 import EventsList from '../components/calendario/EventsList.jsx'
+import Seo from '../components/Seo.jsx'
+import { PAGE_SEO, breadcrumbJsonLd } from '../data/seoConfig.js'
+
+const BREADCRUMB = breadcrumbJsonLd([
+  { name: 'Início', path: '/' },
+  { name: 'Calendário Escolar', path: '/calendario' },
+])
 
 export default function CalendarioPage() {
   return (
     <div className="cal-page">
+      <Seo {...PAGE_SEO.calendario} jsonLd={BREADCRUMB} />
       <CalendarioHeader />
 
+      <main>
       <section className="cal-hero">
         <div className="container">
           <div className="cal-hero-inner">
@@ -62,6 +71,7 @@ export default function CalendarioPage() {
           <EventsList />
         </div>
       </section>
+      </main>
 
       <CalendarioFooter />
     </div>

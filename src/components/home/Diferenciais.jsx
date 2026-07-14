@@ -46,7 +46,7 @@ export default function Diferenciais() {
             >
               <div className="diferencial-card-icon"><i className={`fas ${card.icon}`}></i></div>
               <div>
-                <h4>{card.title}</h4>
+                <h3>{card.title}</h3>
                 <p>{card.textNode ?? card.text}</p>
               </div>
             </div>
