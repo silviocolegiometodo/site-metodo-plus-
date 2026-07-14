@@ -20,4 +20,11 @@ export const PORTAL_LINKS = [
     url: 'https://metodobh.com.br/',
     cta: 'Ver notas escolares',
   },
+  {
+    icon: 'fa-cart-shopping',
+    title: 'Loja Escolar',
+    text: 'Compre o material escolar oficial do Colégio Método Plus.',
+    url: 'https://lojanaescola.com.br/metodoplus',
+    cta: 'Comprar material',
+  },
 ]
